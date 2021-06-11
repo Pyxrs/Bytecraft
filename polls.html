@@ -1,0 +1,2077 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>ByteCraft SMP - &#128499;｜polls</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+
+    <style>
+        /* General */
+
+@font-face {
+    font-family: Whitney;
+    src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-300.woff);
+    font-weight: 300;
+}
+
+@font-face {
+    font-family: Whitney;
+    src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-400.woff);
+    font-weight: 400;
+}
+
+@font-face {
+    font-family: Whitney;
+    src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-500.woff);
+    font-weight: 500;
+}
+
+@font-face {
+    font-family: Whitney;
+    src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-600.woff);
+    font-weight: 600;
+}
+
+@font-face {
+    font-family: Whitney;
+    src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-700.woff);
+    font-weight: 700;
+}
+
+body {
+    font-family: "Whitney", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 17px;
+}
+
+a {
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+img {
+    object-fit: contain;
+}
+
+.markdown {
+    max-width: 100%;
+    line-height: 1.3;
+    overflow-wrap: break-word;
+}
+
+.preserve-whitespace {
+    white-space: pre-wrap;
+}
+
+.spoiler {
+    /* width: fit-content; */
+    display: inline-block;
+    /* This is more consistent across browsers, the old attribute worked well under Chrome but not FireFox. */
+}
+
+.spoiler--hidden {
+    cursor: pointer;
+}
+
+.spoiler-text {
+    border-radius: 3px;
+}
+
+.spoiler--hidden .spoiler-text {
+    color: rgba(0, 0, 0, 0);
+}
+
+.spoiler--hidden .spoiler-text::selection {
+    color: rgba(0, 0, 0, 0);
+}
+
+.spoiler-image {
+    position: relative;
+    overflow: hidden;
+    border-radius: 3px;
+}
+
+.spoiler--hidden .spoiler-image {
+    box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.1);
+}
+
+.spoiler--hidden .spoiler-image * {
+    filter: blur(44px);
+}
+
+.spoiler--hidden .spoiler-image:after {
+    content: "SPOILER";
+    color: #dcddde;
+    background-color: rgba(0, 0, 0, 0.6);
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    font-weight: 600;
+    padding: 100%;
+    border-radius: 20px;
+    letter-spacing: 0.05em;
+    font-size: 0.9em;
+}
+
+.spoiler--hidden:hover .spoiler-image:after {
+    color: #fff;
+    background-color: rgba(0, 0, 0, 0.9);
+}
+
+.quote {
+    margin: 0.1em 0;
+    padding-left: 0.6em;
+    border-left: 4px solid;
+    border-radius: 3px;
+}
+
+.pre {
+    font-family: "Consolas", "Courier New", Courier, monospace;
+}
+
+.pre--multiline {
+    margin-top: 0.25em;
+    padding: 0.5em;
+    border: 2px solid;
+    border-radius: 5px;
+}
+
+.pre--inline {
+    padding: 2px;
+    border-radius: 3px;
+    font-size: 0.85em;
+}
+
+.mention {
+    border-radius: 3px;
+    padding: 0 2px;
+    color: #7289da;
+    background: rgba(114, 137, 218, .1);
+    font-weight: 500;
+}
+
+.emoji {
+    width: 1.25em;
+    height: 1.25em;
+    margin: 0 0.06em;
+    vertical-align: -0.4em;
+}
+
+.emoji--small {
+    width: 1em;
+    height: 1em;
+}
+
+.emoji--large {
+    width: 2.8em;
+    height: 2.8em;
+}
+
+/* Preamble */
+
+.preamble {
+    display: grid;
+    margin: 0 0.3em 0.6em 0.3em;
+    max-width: 100%;
+    grid-template-columns: auto 1fr;
+}
+
+.preamble__guild-icon-container {
+    grid-column: 1;
+}
+
+.preamble__guild-icon {
+    max-width: 88px;
+    max-height: 88px;
+}
+
+.preamble__entries-container {
+    grid-column: 2;
+    margin-left: 0.6em;
+}
+
+.preamble__entry {
+    font-size: 1.4em;
+}
+
+.preamble__entry--small {
+    font-size: 1em;
+}
+
+/* Chatlog */
+
+.chatlog {
+    max-width: 100%;
+}
+
+.chatlog__message-group {
+    display: grid;
+    margin: 0 0.6em;
+    padding: 0.9em 0;
+    border-top: 1px solid;
+    grid-template-columns: auto 1fr;
+}
+
+.chatlog__reference-symbol {
+    grid-column: 1;
+    border-style: solid;
+    border-width: 2px 0 0 2px;
+    border-radius: 8px 0 0 0;
+    margin-left: 16px;
+    margin-top: 8px;
+}
+
+.chatlog__reference {
+    display: flex;
+    grid-column: 2;
+    margin-left: 1.2em;
+    margin-bottom: 0.25em;
+    font-size: 0.875em;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    align-items: center;
+}
+
+.chatlog__reference-avatar {
+    border-radius: 50%;
+    height: 16px;
+    width: 16px;
+    margin-right: 0.25em;
+}
+
+.chatlog__reference-name {
+    margin-right: 0.25em;
+    font-weight: 600;
+}
+
+.chatlog__reference-link {
+    flex-grow: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.chatlog__reference-link:hover {
+    text-decoration: none;
+}
+
+.chatlog__reference-content > * {
+    display: inline;
+}
+
+.chatlog__reference-edited-timestamp {
+    margin-left: 0.25em;
+    font-size: 0.8em;
+}
+
+.chatlog__author-avatar-container {
+    grid-column: 1;
+    width: 40px;
+    height: 40px;
+}
+
+.chatlog__author-avatar {
+    border-radius: 50%;
+    height: 40px;
+    width: 40px;
+}
+
+.chatlog__messages {
+    grid-column: 2;
+    margin-left: 1.2em;
+    min-width: 50%;
+}
+
+.chatlog__author-name {
+    font-weight: 500;
+}
+
+.chatlog__timestamp {
+    margin-left: 0.3em;
+    font-size: 0.75em;
+}
+
+.chatlog__message {
+    padding: 0.1em 0.3em;
+    margin: 0 -0.3em;
+    background-color: transparent;
+    transition: background-color 1s ease;
+}
+
+.chatlog__content {
+    font-size: 0.95em;
+    word-wrap: break-word;
+}
+
+.chatlog__edited-timestamp {
+    margin-left: 0.15em;
+    font-size: 0.8em;
+}
+
+.chatlog__attachment {
+    margin-top: 0.3em;
+}
+
+.chatlog__attachment-thumbnail {
+    vertical-align: top;
+    max-width: 45vw;
+    max-height: 500px;
+    border-radius: 3px;
+}
+
+.chatlog__attachment-container {
+    height: 40px;
+    width: 100%;
+    max-width: 520px;
+    padding: 10px;
+    border: 1px solid;
+    border-radius: 3px;
+    overflow: hidden;
+}
+
+.chatlog__attachment-icon {
+    float: left;
+    height: 100%;
+    margin-right: 10px;
+}
+
+.chatlog__attachment-icon > .a {
+    fill: #f4f5fb;
+    d: path("M50,935a25,25,0,0,1-25-25V50A25,25,0,0,1,50,25H519.6L695,201.32V910a25,25,0,0,1-25,25Z");
+}
+
+.chatlog__attachment-icon > .b {
+    fill: #7789c4;
+    d: path("M509.21,50,670,211.63V910H50V50H509.21M530,0H50A50,50,0,0,0,0,50V910a50,50,0,0,0,50,50H670a50,50,0,0,0,50-50h0V191Z");
+}
+
+.chatlog__attachment-icon > .c {
+    fill: #f4f5fb;
+    d: path("M530,215a25,25,0,0,1-25-25V50a25,25,0,0,1,16.23-23.41L693.41,198.77A25,25,0,0,1,670,215Z");
+}
+
+.chatlog__attachment-icon > .d {
+    fill: #7789c4;
+    d: path("M530,70.71,649.29,190H530V70.71M530,0a50,50,0,0,0-50,50V190a50,50,0,0,0,50,50H670a50,50,0,0,0,50-50Z");
+}
+
+.chatlog__attachment-filesize {
+    color: #72767d;
+    font-size: 12px;
+}
+
+.chatlog__attachment-filename {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.chatlog__embed {
+    display: flex;
+    margin-top: 0.3em;
+    max-width: 520px;
+}
+
+.chatlog__embed-color-pill {
+    flex-shrink: 0;
+    width: 0.25em;
+    border-top-left-radius: 3px;
+    border-bottom-left-radius: 3px;
+}
+
+.chatlog__embed-content-container {
+    display: flex;
+    flex-direction: column;
+    padding: 0.5em 0.6em;
+    border: 1px solid;
+    border-top-right-radius: 3px;
+    border-bottom-right-radius: 3px;
+}
+
+.chatlog__embed-content {
+    display: flex;
+    width: 100%;
+}
+
+.chatlog__embed-text {
+    flex: 1;
+}
+
+.chatlog__embed-author {
+    display: flex;
+    margin-bottom: 0.3em;
+    align-items: center;
+}
+
+.chatlog__embed-author-icon {
+    margin-right: 0.5em;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+}
+
+.chatlog__embed-author-name {
+    font-size: 0.875em;
+    font-weight: 600;
+}
+
+.chatlog__embed-title {
+    margin-bottom: 0.2em;
+    font-size: 0.875em;
+    font-weight: 600;
+}
+
+.chatlog__embed-description {
+    font-weight: 500;
+    font-size: 0.85em;
+}
+
+.chatlog__embed-fields {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.chatlog__embed-field {
+    flex: 0;
+    min-width: 100%;
+    max-width: 506px;
+    padding-top: 0.6em;
+    font-size: 0.875em;
+}
+
+.chatlog__embed-field--inline {
+    flex: 1;
+    flex-basis: auto;
+    min-width: 150px;
+}
+
+.chatlog__embed-field-name {
+    margin-bottom: 0.2em;
+    font-weight: 600;
+}
+
+.chatlog__embed-field-value {
+    font-weight: 500;
+}
+
+.chatlog__embed-thumbnail {
+    flex: 0;
+    margin-left: 1.2em;
+    max-width: 80px;
+    max-height: 80px;
+    border-radius: 3px;
+}
+
+.chatlog__embed-image-container {
+    margin-top: 0.6em;
+}
+
+.chatlog__embed-image {
+    max-width: 500px;
+    max-height: 400px;
+    border-radius: 3px;
+}
+
+.chatlog__embed-footer {
+    margin-top: 0.6em;
+}
+
+.chatlog__embed-footer-icon {
+    margin-right: 0.2em;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    vertical-align: middle;
+}
+
+.chatlog__embed-footer-text {
+    font-size: 0.75em;
+    font-weight: 500;
+}
+
+.chatlog__reactions {
+    display: flex;
+}
+
+.chatlog__reaction {
+    display: flex;
+    align-items: center;
+    margin: 0.35em 0.1em 0.1em 0.1em;
+    padding: 0.2em 0.35em;
+    border-radius: 3px;
+}
+
+.chatlog__reaction-count {
+    min-width: 9px;
+    margin-left: 0.35em;
+    font-size: 0.875em;
+}
+
+.chatlog__bot-tag {
+    position: relative;
+    top: -.2em;
+    margin-left: 0.3em;
+    padding: 0.05em 0.3em;
+    border-radius: 3px;
+    vertical-align: middle;
+    line-height: 1.3;
+    background: #7289da;
+    color: #ffffff;
+    font-size: 0.625em;
+    font-weight: 500;
+}
+
+/* Postamble */
+
+.postamble {
+    margin: 1.4em 0.3em 0.6em 0.3em;
+    padding: 1em;
+    border-top: 1px solid;
+}
+    </style>
+    <style>
+        /* General */
+
+body {
+    background-color: #36393e;
+    color: #dcddde;
+}
+
+a {
+    color: #0096cf;
+}
+
+.spoiler-text {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.spoiler--hidden .spoiler-text {
+    background-color: #202225;
+}
+
+.spoiler--hidden:hover .spoiler-text {
+    background-color: rgba(32, 34, 37, 0.8);
+}
+
+.quote {
+    border-color: #4f545c;
+}
+
+.pre {
+    background-color: #2f3136 !important;
+}
+
+.pre--multiline {
+    border-color: #282b30 !important;
+    color: #b9bbbe !important;
+}
+
+/* === Preamble === */
+
+.preamble__entry {
+    color: #ffffff;
+}
+
+/* Chatlog */
+
+.chatlog__message-group {
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+.chatlog__reference-symbol {
+    border-color: #4f545c;
+}
+
+.chatlog__reference {
+    color: #b5b6b8;
+}
+
+.chatlog__reference-link {
+    color: #b5b6b8;
+}
+
+.chatlog__reference-link:hover {
+    color: #ffffff;
+}
+
+.chatlog__reference-edited-timestamp {
+    color: rgba(255, 255, 255, 0.2);
+}
+
+.chatlog__author-name {
+    color: #ffffff;
+}
+
+.chatlog__timestamp {
+    color: rgba(255, 255, 255, 0.2);
+}
+
+.chatlog__message--highlighted {
+    background-color: rgba(114, 137, 218, 0.2) !important;
+}
+
+.chatlog__message--pinned {
+    background-color: rgba(249, 168, 37, 0.05);
+}
+
+.chatlog__attachment-container {
+    background-color: #2f3136;
+    border-color: #292b2f;
+}
+
+.chatlog__edited-timestamp {
+    color: rgba(255, 255, 255, 0.2);
+}
+
+.chatlog__embed-color-pill--default {
+    background-color: rgba(79, 84, 92, 1);
+}
+
+.chatlog__embed-content-container {
+    background-color: rgba(46, 48, 54, 0.3);
+    border-color: rgba(46, 48, 54, 0.6);
+}
+
+.chatlog__embed-author-name {
+    color: #ffffff;
+}
+
+.chatlog__embed-author-name-link {
+    color: #ffffff;
+}
+
+.chatlog__embed-title {
+    color: #ffffff;
+}
+
+.chatlog__embed-description {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.chatlog__embed-field-name {
+    color: #ffffff;
+}
+
+.chatlog__embed-field-value {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.chatlog__embed-footer {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.chatlog__reaction {
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+.chatlog__reaction-count {
+    color: rgba(255, 255, 255, 0.3);
+}
+
+/* Postamble */
+
+.postamble {
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+.postamble__entry {
+    color: #ffffff;
+}
+    </style>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/solarized-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/highlight.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('.pre--multiline').forEach(block => hljs.highlightBlock(block));
+        });
+    </script>
+
+    <script>
+        function scrollToMessage(event, id) {
+            var element = document.getElementById('message-' + id);
+
+            if (element) {
+                event.preventDefault();
+
+                element.classList.add('chatlog__message--highlighted');
+
+                window.scrollTo({
+                    top: element.getBoundingClientRect().top - document.body.getBoundingClientRect().top - (window.innerHeight / 2),
+                    behavior: 'smooth'
+                });
+
+                window.setTimeout(function() {
+                    element.classList.remove('chatlog__message--highlighted');
+                }, 2000);
+            }
+        }
+
+        function showSpoiler(event, element) {
+            if (element && element.classList.contains('spoiler--hidden')) {
+                event.preventDefault();
+                element.classList.remove('spoiler--hidden');
+            }
+        }
+    </script>
+</head>
+<body>
+
+<div class="preamble">
+    <div class="preamble__guild-icon-container">
+        <img class="preamble__guild-icon" src="https://cdn.discordapp.com/icons/752922900193083417/89a2a65510f4eae755d0e733a228e841.png" alt="Guild icon">
+    </div>
+    <div class="preamble__entries-container">
+        <div class="preamble__entry">ByteCraft SMP</div>
+        <div class="preamble__entry">community / &#128499;｜polls</div>
+
+
+    </div>
+</div>
+
+<div class="chatlog">
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/120583438771159042/121623bb510c26d9839fbed9445c7d53.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Tettrum#2869" data-user-id="120583438771159042" style="">Tettrum</span>
+
+
+        <span class="chatlog__timestamp">01-Jan-21 03:20 PM</span>
+
+            <div class="chatlog__message " data-message-id="794691535735357480" id="message-794691535735357480">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">we should install something to let users change their nicknames in minecraft so they can have their preferrred discord ign, since mojangs name change process is horrible</span>
+
+                        </div>
+                    </div>
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="upvote" title="upvote" src="https://cdn.discordapp.com/emojis/786398574920728617.png">
+                                <span class="chatlog__reaction-count">3</span>
+                            </div>
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="downvote" title="downvote" src="https://cdn.discordapp.com/emojis/786398574393032705.png">
+                                <span class="chatlog__reaction-count">1</span>
+                            </div>
+                    </div>
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/120583438771159042/121623bb510c26d9839fbed9445c7d53.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Tettrum#2869" data-user-id="120583438771159042" style="">Tettrum</span>
+
+
+        <span class="chatlog__timestamp">01-Jan-21 08:21 PM</span>
+
+            <div class="chatlog__message " data-message-id="794767249499357224" id="message-794767249499357224">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Set the counter on the scoreboard to deaths for a few weeks and then set it to play time later</span>
+
+                        </div>
+                    </div>
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="upvote" title="upvote" src="https://cdn.discordapp.com/emojis/786398574920728617.png">
+                                <span class="chatlog__reaction-count">9</span>
+                            </div>
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="upvote" title="upvote" src="https://cdn.discordapp.com/emojis/709560717002539089.png">
+                                <span class="chatlog__reaction-count">1</span>
+                            </div>
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="&#128588;" title="&#128588;" src="https://twemoji.maxcdn.com/2/72x72/1f64c.png">
+                                <span class="chatlog__reaction-count">1</span>
+                            </div>
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="⬇️" title="⬇️" src="https://twemoji.maxcdn.com/2/72x72/2b07.png">
+                                <span class="chatlog__reaction-count">1</span>
+                            </div>
+                    </div>
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/320580628254949377/2db448877b9b06836bac60b4e0f47a49.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Lzrd45#2500" data-user-id="320580628254949377" style="color: rgb(255,255,255)">Lzrd45</span>
+
+
+        <span class="chatlog__timestamp">01-Jan-21 10:49 PM</span>
+
+            <div class="chatlog__message " data-message-id="794804648765947905" id="message-794804648765947905">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Show seed for finding base spots</span>
+
+                        </div>
+                    </div>
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="&#128077;" title="&#128077;" src="https://twemoji.maxcdn.com/2/72x72/1f44d.png">
+                                <span class="chatlog__reaction-count">3</span>
+                            </div>
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="&#128078;" title="&#128078;" src="https://twemoji.maxcdn.com/2/72x72/1f44e.png">
+                                <span class="chatlog__reaction-count">9</span>
+                            </div>
+                    </div>
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/330339028937211904/e1c2cb9415dd9d8d50207487aa8667fa.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Chilled#1439" data-user-id="330339028937211904" style="color: rgb(109,213,15)">Chilled</span>
+
+
+        <span class="chatlog__timestamp">02-Jan-21 07:00 PM</span>
+
+            <div class="chatlog__message " data-message-id="795109265614307369" id="message-795109265614307369">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">make phantoms spawn under different conditions, such as thunderstorms instead of insomnia</span>
+
+                        </div>
+                    </div>
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="&#128077;" title="&#128077;" src="https://twemoji.maxcdn.com/2/72x72/1f44d.png">
+                                <span class="chatlog__reaction-count">5</span>
+                            </div>
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="&#128078;" title="&#128078;" src="https://twemoji.maxcdn.com/2/72x72/1f44e.png">
+                                <span class="chatlog__reaction-count">6</span>
+                            </div>
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="thonk" title="thonk" src="https://cdn.discordapp.com/emojis/702731845598576650.png">
+                                <span class="chatlog__reaction-count">2</span>
+                            </div>
+                    </div>
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/120583438771159042/121623bb510c26d9839fbed9445c7d53.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Tettrum#2869" data-user-id="120583438771159042" style="">Tettrum</span>
+
+
+        <span class="chatlog__timestamp">03-Jan-21 04:59 PM</span>
+
+            <div class="chatlog__message " data-message-id="795441131156013127" id="message-795441131156013127">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">release a biome map for people to pick bases without revealing dungeons or seed</span>
+
+                        </div>
+                    </div>
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="☑️" title="☑️" src="https://twemoji.maxcdn.com/2/72x72/2611.png">
+                                <span class="chatlog__reaction-count">9</span>
+                            </div>
+                    </div>
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+        <div class="chatlog__reference-symbol">
+        </div>
+        <div class="chatlog__reference">
+                <span class="chatlog__reference-unknown">
+                    Original message was deleted.
+                </span>
+        </div>
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/535241729528299531/f30baf4b8c40d6a9926a2cacc6d3d5fb.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="SimplyCmd#5453" data-user-id="535241729528299531" style="color: rgb(187,129,42)">SimplyCmd</span>
+
+
+        <span class="chatlog__timestamp">04-Jan-21 08:21 AM</span>
+
+            <div class="chatlog__message " data-message-id="795673339481555007" id="message-795673339481555007">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Added :)
+(The way it works is counting deaths from now on, not all time)</span>
+
+                        </div>
+                    </div>
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="Pog_Moai" title="Pog_Moai" src="https://cdn.discordapp.com/emojis/787418657663352862.png">
+                                <span class="chatlog__reaction-count">5</span>
+                            </div>
+                    </div>
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/501684050713378817/39d323e93784ad0db57a0da15105915d.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Lars de Graaf#2519" data-user-id="501684050713378817" style="color: rgb(109,213,15)">De_Graaf</span>
+
+
+        <span class="chatlog__timestamp">04-Jan-21 01:40 PM</span>
+
+            <div class="chatlog__message " data-message-id="795753523396476958" id="message-795753523396476958">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Endbusting before the community event is allowed. (Dragon will stay alive, just building bridges out of the end island) This will allow for having elytras sooner.</span>
+
+                                <span class="chatlog__edited-timestamp" title="04-Jan-21 01:42 PM">(edited)</span>
+                        </div>
+                    </div>
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="✅" title="✅" src="https://twemoji.maxcdn.com/2/72x72/2705.png">
+                                <span class="chatlog__reaction-count">7</span>
+                            </div>
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="❌" title="❌" src="https://twemoji.maxcdn.com/2/72x72/274c.png">
+                                <span class="chatlog__reaction-count">8</span>
+                            </div>
+                    </div>
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/297150047324471307/a_94bd71f08e01e1b155a22b26cf32f3eb.gif" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Mr. Marshmallow#0131" data-user-id="297150047324471307" style="color: rgb(90,118,255)">Mr. Marshmallow</span>
+
+
+        <span class="chatlog__timestamp">05-Jan-21 05:57 AM</span>
+
+            <div class="chatlog__message " data-message-id="795999386185236490" id="message-795999386185236490">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" style="color: rgb(173, 20, 87); background-color: rgba(173, 20, 87, 0.1);">@Announcement Ping</span> Do we want the shopping district to be at 1) Spawn Island, or 2) some other location that we find (Graaf has found -370, 10)</span>
+
+                        </div>
+                    </div>
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="1react" title="1react" src="https://cdn.discordapp.com/emojis/781288679653507092.png">
+                                <span class="chatlog__reaction-count">3</span>
+                            </div>
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="2react" title="2react" src="https://cdn.discordapp.com/emojis/781288754312642610.png">
+                                <span class="chatlog__reaction-count">12</span>
+                            </div>
+                    </div>
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/297150047324471307/a_94bd71f08e01e1b155a22b26cf32f3eb.gif" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Mr. Marshmallow#0131" data-user-id="297150047324471307" style="color: rgb(90,118,255)">Mr. Marshmallow</span>
+
+
+        <span class="chatlog__timestamp">05-Jan-21 08:44 AM</span>
+
+            <div class="chatlog__message " data-message-id="796041418518954005" id="message-796041418518954005">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" style="color: rgb(173, 20, 87); background-color: rgba(173, 20, 87, 0.1);">@Announcement Ping</span> For the enderdragon fight, are you up to do it 1) This Week, 2) Next week, or <img class="emoji " alt="4231_PensiveTomato" title="4231_PensiveTomato" src="https://cdn.discordapp.com/emojis/787418654677270639.png"> ) week after next</span>
+
+                                <span class="chatlog__edited-timestamp" title="05-Jan-21 08:44 AM">(edited)</span>
+                        </div>
+                    </div>
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="1react" title="1react" src="https://cdn.discordapp.com/emojis/781288679653507092.png">
+                                <span class="chatlog__reaction-count">7</span>
+                            </div>
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="2react" title="2react" src="https://cdn.discordapp.com/emojis/781288754312642610.png">
+                                <span class="chatlog__reaction-count">10</span>
+                            </div>
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="4231_PensiveTomato" title="4231_PensiveTomato" src="https://cdn.discordapp.com/emojis/787418654677270639.png">
+                                <span class="chatlog__reaction-count">2</span>
+                            </div>
+                    </div>
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/297150047324471307/a_94bd71f08e01e1b155a22b26cf32f3eb.gif" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Mr. Marshmallow#0131" data-user-id="297150047324471307" style="color: rgb(90,118,255)">Mr. Marshmallow</span>
+
+
+        <span class="chatlog__timestamp">05-Jan-21 09:16 AM</span>
+
+            <div class="chatlog__message " data-message-id="796049404255404102" id="message-796049404255404102">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">To clarify: next week is the week of 1/11-1/17</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/297150047324471307/a_94bd71f08e01e1b155a22b26cf32f3eb.gif" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Mr. Marshmallow#0131" data-user-id="297150047324471307" style="color: rgb(90,118,255)">Mr. Marshmallow</span>
+
+
+        <span class="chatlog__timestamp">07-Jan-21 04:12 PM</span>
+
+            <div class="chatlog__message " data-message-id="796879080468381707" id="message-796879080468381707">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" style="color: rgb(173, 20, 87); background-color: rgba(173, 20, 87, 0.1);">@Poll Ping</span> When do you want to do the ender dragon fight? Options are: 1) Monday 2) Tuesday 3) Wednesday...until 7) Sunday</span>
+
+                        </div>
+                    </div>
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="2️⃣" title="2️⃣" src="https://twemoji.maxcdn.com/2/72x72/32-20e3.png">
+                                <span class="chatlog__reaction-count">4</span>
+                            </div>
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="5️⃣" title="5️⃣" src="https://twemoji.maxcdn.com/2/72x72/35-20e3.png">
+                                <span class="chatlog__reaction-count">2</span>
+                            </div>
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="6️⃣" title="6️⃣" src="https://twemoji.maxcdn.com/2/72x72/36-20e3.png">
+                                <span class="chatlog__reaction-count">5</span>
+                            </div>
+                    </div>
+            </div>
+            <div class="chatlog__message " data-message-id="796879334412517376" id="message-796879334412517376">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Once we have a date, we’ll see ab time</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="796879535865331713" id="message-796879535865331713">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">For THIS SUNDAY, 1/10, react to this message</span>
+
+                        </div>
+                    </div>
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="floshed" title="floshed" src="https://cdn.discordapp.com/emojis/787418657705689129.png">
+                                <span class="chatlog__reaction-count">3</span>
+                            </div>
+                    </div>
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/297150047324471307/a_94bd71f08e01e1b155a22b26cf32f3eb.gif" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Mr. Marshmallow#0131" data-user-id="297150047324471307" style="color: rgb(90,118,255)">Mr. Marshmallow</span>
+
+
+        <span class="chatlog__timestamp">07-Jan-21 04:52 PM</span>
+
+            <div class="chatlog__message " data-message-id="796889138246189126" id="message-796889138246189126">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">RUNOFF ELECTION: <span class="mention" style="color: rgb(173, 20, 87); background-color: rgba(173, 20, 87, 0.1);">@Poll Ping</span> 
+1) for THIS SUNDAY, 1/10 or 
+2) for NEXT SATURDAY, 1/16</span>
+
+                        </div>
+                    </div>
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="1️⃣" title="1️⃣" src="https://twemoji.maxcdn.com/2/72x72/31-20e3.png">
+                                <span class="chatlog__reaction-count">8</span>
+                            </div>
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="2️⃣" title="2️⃣" src="https://twemoji.maxcdn.com/2/72x72/32-20e3.png">
+                                <span class="chatlog__reaction-count">5</span>
+                            </div>
+                    </div>
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/297150047324471307/a_94bd71f08e01e1b155a22b26cf32f3eb.gif" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Mr. Marshmallow#0131" data-user-id="297150047324471307" style="color: rgb(90,118,255)">Mr. Marshmallow</span>
+
+
+        <span class="chatlog__timestamp">07-Jan-21 05:49 PM</span>
+
+            <div class="chatlog__message " data-message-id="796903370769301544" id="message-796903370769301544">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Have until 12pm EST to respond</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/535241729528299531/f30baf4b8c40d6a9926a2cacc6d3d5fb.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="SimplyCmd#5453" data-user-id="535241729528299531" style="color: rgb(187,129,42)">SimplyCmd</span>
+
+
+        <span class="chatlog__timestamp">08-Jan-21 08:10 AM</span>
+
+            <div class="chatlog__message " data-message-id="797120039178338314" id="message-797120039178338314">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">For clarification, 12pm EST is noon today, not midnight yesterday</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/297150047324471307/a_94bd71f08e01e1b155a22b26cf32f3eb.gif" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Mr. Marshmallow#0131" data-user-id="297150047324471307" style="color: rgb(90,118,255)">Mr. Marshmallow</span>
+
+
+        <span class="chatlog__timestamp">08-Jan-21 10:19 AM</span>
+
+            <div class="chatlog__message " data-message-id="797152634250592266" id="message-797152634250592266">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">By a narrow margin, THIS SUNDAY, 1/10, has won the vote. Please react to this message for ALL times you are available. You can react to more than one. (There will be a runoff after this to narrow down a time) <span class="mention" style="color: rgb(173, 20, 87); background-color: rgba(173, 20, 87, 0.1);">@Poll Ping</span> 
+1) 10am-12pm (EST) 
+2) 12pm-2pm 
+3) 2pm-4pm 
+4) 4pm-6pm 
+5) 6pm-8pm
+6) 8pm-10pm</span>
+
+                        </div>
+                    </div>
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="1️⃣" title="1️⃣" src="https://twemoji.maxcdn.com/2/72x72/31-20e3.png">
+                                <span class="chatlog__reaction-count">2</span>
+                            </div>
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="2️⃣" title="2️⃣" src="https://twemoji.maxcdn.com/2/72x72/32-20e3.png">
+                                <span class="chatlog__reaction-count">2</span>
+                            </div>
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="3️⃣" title="3️⃣" src="https://twemoji.maxcdn.com/2/72x72/33-20e3.png">
+                                <span class="chatlog__reaction-count">8</span>
+                            </div>
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="4️⃣" title="4️⃣" src="https://twemoji.maxcdn.com/2/72x72/34-20e3.png">
+                                <span class="chatlog__reaction-count">2</span>
+                            </div>
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="5️⃣" title="5️⃣" src="https://twemoji.maxcdn.com/2/72x72/35-20e3.png">
+                                <span class="chatlog__reaction-count">4</span>
+                            </div>
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="6️⃣" title="6️⃣" src="https://twemoji.maxcdn.com/2/72x72/36-20e3.png">
+                                <span class="chatlog__reaction-count">5</span>
+                            </div>
+                    </div>
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/297150047324471307/a_94bd71f08e01e1b155a22b26cf32f3eb.gif" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Mr. Marshmallow#0131" data-user-id="297150047324471307" style="color: rgb(90,118,255)">Mr. Marshmallow</span>
+
+
+        <span class="chatlog__timestamp">08-Jan-21 01:12 PM</span>
+
+            <div class="chatlog__message " data-message-id="797196022337372220" id="message-797196022337372220">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Runoff time! <span class="mention" style="color: rgb(173, 20, 87); background-color: rgba(173, 20, 87, 0.1);">@Poll Ping</span> 
+1) 2pm-4pm EST
+2) 6pm-8pm EST</span>
+
+                        </div>
+                    </div>
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="2️⃣" title="2️⃣" src="https://twemoji.maxcdn.com/2/72x72/32-20e3.png">
+                                <span class="chatlog__reaction-count">7</span>
+                            </div>
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="1️⃣" title="1️⃣" src="https://twemoji.maxcdn.com/2/72x72/31-20e3.png">
+                                <span class="chatlog__reaction-count">3</span>
+                            </div>
+                    </div>
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/297150047324471307/a_94bd71f08e01e1b155a22b26cf32f3eb.gif" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Mr. Marshmallow#0131" data-user-id="297150047324471307" style="color: rgb(90,118,255)">Mr. Marshmallow</span>
+
+
+        <span class="chatlog__timestamp">08-Jan-21 09:08 PM</span>
+
+            <div class="chatlog__message " data-message-id="797315729438277642" id="message-797315729438277642">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">The Poll has closed! The enderdragon fight is going to be at 6pm-8pm EST, on Sunday 1/10</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/330339028937211904/e1c2cb9415dd9d8d50207487aa8667fa.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Chilled#1439" data-user-id="330339028937211904" style="color: rgb(109,213,15)">Chilled</span>
+
+
+        <span class="chatlog__timestamp">10-Jan-21 06:51 AM</span>
+
+            <div class="chatlog__message " data-message-id="797824886751494154" id="message-797824886751494154">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">add a command to toggle afk status</span>
+
+                        </div>
+                    </div>
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="&#128077;" title="&#128077;" src="https://twemoji.maxcdn.com/2/72x72/1f44d.png">
+                                <span class="chatlog__reaction-count">10</span>
+                            </div>
+                    </div>
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/691703615576080456/a_71ad73ea472b8d6906f03295cb7be390.gif" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="flawda#0001" data-user-id="691703615576080456" style="color: rgb(90,118,255)">flawda</span>
+
+
+        <span class="chatlog__timestamp">10-Jan-21 02:50 PM</span>
+
+            <div class="chatlog__message " data-message-id="797945370494631937" id="message-797945370494631937">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Treefeller plugin</span>
+
+                        </div>
+                    </div>
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="allowed" title="allowed" src="https://cdn.discordapp.com/emojis/589630561140867083.png">
+                                <span class="chatlog__reaction-count">3</span>
+                            </div>
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="denied" title="denied" src="https://cdn.discordapp.com/emojis/589630583857217546.png">
+                                <span class="chatlog__reaction-count">6</span>
+                            </div>
+                    </div>
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/119586107884044289/a_e3e793481ea145d5f249f796a0a7f52b.gif" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="DevHue#2342" data-user-id="119586107884044289" style="color: rgb(191,74,49)">DevHue</span>
+
+
+        <span class="chatlog__timestamp">12-Jan-21 08:02 AM</span>
+
+            <div class="chatlog__message " data-message-id="798567649654341683" id="message-798567649654341683">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention">@everyone</span> 
+Provide a donation link so that you can assist in server upkeep?
+<em>completely optional</em></span>
+
+                        </div>
+                    </div>
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="✅" title="✅" src="https://twemoji.maxcdn.com/2/72x72/2705.png">
+                                <span class="chatlog__reaction-count">16</span>
+                            </div>
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="&#128683;" title="&#128683;" src="https://twemoji.maxcdn.com/2/72x72/1f6ab.png">
+                                <span class="chatlog__reaction-count">1</span>
+                            </div>
+                    </div>
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/535241729528299531/f30baf4b8c40d6a9926a2cacc6d3d5fb.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="SimplyCmd#5453" data-user-id="535241729528299531" style="color: rgb(187,129,42)">SimplyCmd</span>
+
+
+        <span class="chatlog__timestamp">14-Jan-21 09:48 AM</span>
+
+            <div class="chatlog__message " data-message-id="799318960716775424" id="message-799318960716775424">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" style="color: rgb(173, 20, 87); background-color: rgba(173, 20, 87, 0.1);">@Poll Ping</span> Change tab number to time played instead of deaths?</span>
+
+                        </div>
+                    </div>
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="✅" title="✅" src="https://twemoji.maxcdn.com/2/72x72/2705.png">
+                                <span class="chatlog__reaction-count">16</span>
+                            </div>
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="❌" title="❌" src="https://twemoji.maxcdn.com/2/72x72/274c.png">
+                                <span class="chatlog__reaction-count">2</span>
+                            </div>
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="im_fine" title="im_fine" src="https://cdn.discordapp.com/emojis/786398574535639120.png">
+                                <span class="chatlog__reaction-count">1</span>
+                            </div>
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="&#127470;" title="&#127470;" src="https://twemoji.maxcdn.com/2/72x72/1f1ee.png">
+                                <span class="chatlog__reaction-count">1</span>
+                            </div>
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="Ⓜ️" title="Ⓜ️" src="https://twemoji.maxcdn.com/2/72x72/24c2.png">
+                                <span class="chatlog__reaction-count">1</span>
+                            </div>
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="ℹ️" title="ℹ️" src="https://twemoji.maxcdn.com/2/72x72/2139.png">
+                                <span class="chatlog__reaction-count">1</span>
+                            </div>
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="&#127475;" title="&#127475;" src="https://twemoji.maxcdn.com/2/72x72/1f1f3.png">
+                                <span class="chatlog__reaction-count">1</span>
+                            </div>
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="&#127465;" title="&#127465;" src="https://twemoji.maxcdn.com/2/72x72/1f1e9.png">
+                                <span class="chatlog__reaction-count">1</span>
+                            </div>
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="&#127462;" title="&#127462;" src="https://twemoji.maxcdn.com/2/72x72/1f1e6.png">
+                                <span class="chatlog__reaction-count">1</span>
+                            </div>
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="&#127382;" title="&#127382;" src="https://twemoji.maxcdn.com/2/72x72/1f196.png">
+                                <span class="chatlog__reaction-count">1</span>
+                            </div>
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="&#127466;" title="&#127466;" src="https://twemoji.maxcdn.com/2/72x72/1f1ea.png">
+                                <span class="chatlog__reaction-count">1</span>
+                            </div>
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="&#127479;" title="&#127479;" src="https://twemoji.maxcdn.com/2/72x72/1f1f7.png">
+                                <span class="chatlog__reaction-count">1</span>
+                            </div>
+                    </div>
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/770052609523843082/9204bc9c0b5d596bc4ba41ff87d753e4.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="yeachar#9205" data-user-id="770052609523843082" style="color: rgb(85,212,255)">yeachar (obama)</span>
+
+
+        <span class="chatlog__timestamp">15-Jan-21 11:06 AM</span>
+
+            <div class="chatlog__message " data-message-id="799700985428836382" id="message-799700985428836382">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="SimplyCmd#5453">@SimplyCmd</span> ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/535241729528299531/f30baf4b8c40d6a9926a2cacc6d3d5fb.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="SimplyCmd#5453" data-user-id="535241729528299531" style="color: rgb(187,129,42)">SimplyCmd</span>
+
+
+        <span class="chatlog__timestamp">15-Jan-21 11:06 AM</span>
+
+            <div class="chatlog__message " data-message-id="799701078311829534" id="message-799701078311829534">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">wut</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="799701084142567434" id="message-799701084142567434">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">why</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="799701090203074590" id="message-799701090203074590">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">where</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/298438575756935181/ac1de91b961b7ff49f23fe2cabfa3b9a.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Stitch#2698" data-user-id="298438575756935181" style="">Stitch</span>
+
+
+        <span class="chatlog__timestamp">17-Jan-21 12:06 PM</span>
+
+            <div class="chatlog__message " data-message-id="800440821286830091" id="message-800440821286830091">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">What am I?</span>
+
+                        </div>
+                    </div>
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="♂️" title="♂️" src="https://twemoji.maxcdn.com/2/72x72/2642.png">
+                                <span class="chatlog__reaction-count">1</span>
+                            </div>
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="♀️" title="♀️" src="https://twemoji.maxcdn.com/2/72x72/2640.png">
+                                <span class="chatlog__reaction-count">2</span>
+                            </div>
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="&#129335;" title="&#129335;" src="https://twemoji.maxcdn.com/2/72x72/1f937.png">
+                                <span class="chatlog__reaction-count">7</span>
+                            </div>
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="&#129436;" title="&#129436;" src="https://twemoji.maxcdn.com/2/72x72/1f99c.png">
+                                <span class="chatlog__reaction-count">3</span>
+                            </div>
+                    </div>
+            </div>
+            <div class="chatlog__message " data-message-id="800440920142512141" id="message-800440920142512141">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">asking for Hue,</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/691703615576080456/a_71ad73ea472b8d6906f03295cb7be390.gif" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="flawda#0001" data-user-id="691703615576080456" style="color: rgb(90,118,255)">flawda</span>
+
+
+        <span class="chatlog__timestamp">24-Jan-21 10:24 AM</span>
+
+            <div class="chatlog__message " data-message-id="802951893059764224" id="message-802951893059764224">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="yeachar#9205">@yeachar (obama)</span> please put into suggestions channel</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/297150047324471307/a_94bd71f08e01e1b155a22b26cf32f3eb.gif" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Mr. Marshmallow#0131" data-user-id="297150047324471307" style="color: rgb(90,118,255)">Mr. Marshmallow</span>
+
+
+        <span class="chatlog__timestamp">19-Feb-21 07:07 AM</span>
+
+            <div class="chatlog__message " data-message-id="812324492919439420" id="message-812324492919439420">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" style="color: rgb(173, 20, 87); background-color: rgba(173, 20, 87, 0.1);">@Poll Ping</span> , For the outside of the nethre hub, should I make it a pyramid? or a half-sphere</span>
+
+                        </div>
+                    </div>
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="⚪" title="⚪" src="https://twemoji.maxcdn.com/2/72x72/26aa.png">
+                                <span class="chatlog__reaction-count">6</span>
+                            </div>
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="&#128314;" title="&#128314;" src="https://twemoji.maxcdn.com/2/72x72/1f53a.png">
+                                <span class="chatlog__reaction-count">4</span>
+                            </div>
+                    </div>
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/297150047324471307/a_94bd71f08e01e1b155a22b26cf32f3eb.gif" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Mr. Marshmallow#0131" data-user-id="297150047324471307" style="color: rgb(90,118,255)">Mr. Marshmallow</span>
+
+
+        <span class="chatlog__timestamp">18-Mar-21 11:01 AM</span>
+
+            <div class="chatlog__message " data-message-id="822152704004456488" id="message-822152704004456488">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" style="color: rgb(173, 20, 87); background-color: rgba(173, 20, 87, 0.1);">@Poll Ping</span> How many people are coming to AmongUs this saturday, March 20th, at 8PM?</span>
+
+                        </div>
+                    </div>
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="&#127475;" title="&#127475;" src="https://twemoji.maxcdn.com/2/72x72/1f1f3.png">
+                                <span class="chatlog__reaction-count">3</span>
+                            </div>
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="&#127476;" title="&#127476;" src="https://twemoji.maxcdn.com/2/72x72/1f1f4.png">
+                                <span class="chatlog__reaction-count">3</span>
+                            </div>
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="&#128533;" title="&#128533;" src="https://twemoji.maxcdn.com/2/72x72/1f615.png">
+                                <span class="chatlog__reaction-count">2</span>
+                            </div>
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="&#127486;" title="&#127486;" src="https://twemoji.maxcdn.com/2/72x72/1f1fe.png">
+                                <span class="chatlog__reaction-count">2</span>
+                            </div>
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="&#127466;" title="&#127466;" src="https://twemoji.maxcdn.com/2/72x72/1f1ea.png">
+                                <span class="chatlog__reaction-count">2</span>
+                            </div>
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="&#127480;" title="&#127480;" src="https://twemoji.maxcdn.com/2/72x72/1f1f8.png">
+                                <span class="chatlog__reaction-count">2</span>
+                            </div>
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="&#127470;" title="&#127470;" src="https://twemoji.maxcdn.com/2/72x72/1f1ee.png">
+                                <span class="chatlog__reaction-count">1</span>
+                            </div>
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="&#127465;" title="&#127465;" src="https://twemoji.maxcdn.com/2/72x72/1f1e9.png">
+                                <span class="chatlog__reaction-count">1</span>
+                            </div>
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="&#127472;" title="&#127472;" src="https://twemoji.maxcdn.com/2/72x72/1f1f0.png">
+                                <span class="chatlog__reaction-count">1</span>
+                            </div>
+                    </div>
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/535241729528299531/f30baf4b8c40d6a9926a2cacc6d3d5fb.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="SimplyCmd#5453" data-user-id="535241729528299531" style="color: rgb(187,129,42)">SimplyCmd</span>
+
+
+        <span class="chatlog__timestamp">04-Apr-21 08:18 AM</span>
+
+            <div class="chatlog__message " data-message-id="828272262875447298" id="message-828272262875447298">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" style="color: rgb(173, 20, 87); background-color: rgba(173, 20, 87, 0.1);">@Poll Ping</span> We&#39;re thinking of doing a modded skyblock event! If you&#39;ve played modded skyblock before or know how they work, what pack should we use?
+
+<img class="emoji " alt="emerald" title="emerald" src="https://cdn.discordapp.com/emojis/759922501638946857.png"> Project Ozone 2 (Garden of Glass)
+<img class="emoji " alt="bread" title="bread" src="https://cdn.discordapp.com/emojis/759922394621804602.png"> SkyFactory 4
+<img class="emoji " alt="carrot" title="carrot" src="https://cdn.discordapp.com/emojis/759922407158579270.png"> SkyFactory 3</span>
+
+                        </div>
+                    </div>
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="emerald" title="emerald" src="https://cdn.discordapp.com/emojis/759922501638946857.png">
+                                <span class="chatlog__reaction-count">1</span>
+                            </div>
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="bread" title="bread" src="https://cdn.discordapp.com/emojis/759922394621804602.png">
+                                <span class="chatlog__reaction-count">10</span>
+                            </div>
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="carrot" title="carrot" src="https://cdn.discordapp.com/emojis/759922407158579270.png">
+                                <span class="chatlog__reaction-count">5</span>
+                            </div>
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="PufferDab" title="PufferDab" src="https://cdn.discordapp.com/emojis/578401035408769024.png">
+                                <span class="chatlog__reaction-count">2</span>
+                            </div>
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="&#127475;" title="&#127475;" src="https://twemoji.maxcdn.com/2/72x72/1f1f3.png">
+                                <span class="chatlog__reaction-count">3</span>
+                            </div>
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="&#127476;" title="&#127476;" src="https://twemoji.maxcdn.com/2/72x72/1f1f4.png">
+                                <span class="chatlog__reaction-count">3</span>
+                            </div>
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="&#127470;" title="&#127470;" src="https://twemoji.maxcdn.com/2/72x72/1f1ee.png">
+                                <span class="chatlog__reaction-count">3</span>
+                            </div>
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="&#127465;" title="&#127465;" src="https://twemoji.maxcdn.com/2/72x72/1f1e9.png">
+                                <span class="chatlog__reaction-count">3</span>
+                            </div>
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="&#127466;" title="&#127466;" src="https://twemoji.maxcdn.com/2/72x72/1f1ea.png">
+                                <span class="chatlog__reaction-count">3</span>
+                            </div>
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="&#127462;" title="&#127462;" src="https://twemoji.maxcdn.com/2/72x72/1f1e6.png">
+                                <span class="chatlog__reaction-count">3</span>
+                            </div>
+                    </div>
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/297150047324471307/a_94bd71f08e01e1b155a22b26cf32f3eb.gif" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Mr. Marshmallow#0131" data-user-id="297150047324471307" style="color: rgb(90,118,255)">Mr. Marshmallow</span>
+
+
+        <span class="chatlog__timestamp">04-Apr-21 11:27 AM</span>
+
+            <div class="chatlog__message " data-message-id="828319945418997780" id="message-828319945418997780">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention">@everyone</span> please respond to this poll! It is greatly appreciated</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/770052609523843082/9204bc9c0b5d596bc4ba41ff87d753e4.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="yeachar#9205" data-user-id="770052609523843082" style="color: rgb(85,212,255)">yeachar (obama)</span>
+
+
+        <span class="chatlog__timestamp">04-Apr-21 04:48 PM</span>
+
+            <div class="chatlog__message " data-message-id="828400555013439518" id="message-828400555013439518">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">(responded)</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/297150047324471307/a_94bd71f08e01e1b155a22b26cf32f3eb.gif" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Mr. Marshmallow#0131" data-user-id="297150047324471307" style="color: rgb(90,118,255)">Mr. Marshmallow</span>
+
+
+        <span class="chatlog__timestamp">04-Apr-21 04:48 PM</span>
+
+            <div class="chatlog__message " data-message-id="828400581555126283" id="message-828400581555126283">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">lol</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/770052609523843082/9204bc9c0b5d596bc4ba41ff87d753e4.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="yeachar#9205" data-user-id="770052609523843082" style="color: rgb(85,212,255)">yeachar (obama)</span>
+
+
+        <span class="chatlog__timestamp">04-Apr-21 04:48 PM</span>
+
+            <div class="chatlog__message " data-message-id="828400681270378546" id="message-828400681270378546">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">lol idk how to play sky block</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/535241729528299531/f30baf4b8c40d6a9926a2cacc6d3d5fb.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="SimplyCmd#5453" data-user-id="535241729528299531" style="color: rgb(187,129,42)">SimplyCmd</span>
+
+
+        <span class="chatlog__timestamp">04-Apr-21 05:00 PM</span>
+
+            <div class="chatlog__message " data-message-id="828403798849486848" id="message-828403798849486848">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">You&#39;ll get the hang of it</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/574214651672395776/1a67fbe6fa30aab5b8428178cd1a043a.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="SUMMSNO#0158" data-user-id="574214651672395776" style="color: rgb(109,213,15)">snoonsnoon</span>
+
+
+        <span class="chatlog__timestamp">05-Apr-21 04:53 PM</span>
+
+            <div class="chatlog__message " data-message-id="828764195369517106" id="message-828764195369517106">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">neither</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/297150047324471307/a_94bd71f08e01e1b155a22b26cf32f3eb.gif" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Mr. Marshmallow#0131" data-user-id="297150047324471307" style="color: rgb(90,118,255)">Mr. Marshmallow</span>
+
+
+        <span class="chatlog__timestamp">07-Apr-21 09:02 AM</span>
+
+            <div class="chatlog__message " data-message-id="829370660563714049" id="message-829370660563714049">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">sky fac 4 it seems</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/574214651672395776/1a67fbe6fa30aab5b8428178cd1a043a.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="SUMMSNO#0158" data-user-id="574214651672395776" style="color: rgb(109,213,15)">snoonsnoon</span>
+
+
+        <span class="chatlog__timestamp">07-Apr-21 02:45 PM</span>
+
+            <div class="chatlog__message " data-message-id="829456807839531038" id="message-829456807839531038">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">mhm</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+</div>
+
+<div class="postamble">
+    <div class="postamble__entry">Exported 41 message(s)</div>
+</div>
+
+</body>
+
+</html>
